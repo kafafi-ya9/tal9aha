@@ -1,4 +1,4 @@
-module.exports = (req, res) => {
+export default function handler(req, res) {
   const { q } = req.query;
 
   const allProducts = [
@@ -26,4 +26,4 @@ module.exports = (req, res) => {
 
   const filtered = allProducts.filter(p => p.name.includes(q));
   res.status(200).json(filtered);
-};
+}
