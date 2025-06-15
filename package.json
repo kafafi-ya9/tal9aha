@@ -1,0 +1,15 @@
+{
+  "name": "tal9aha",
+  "version": "1.0.0",
+  "description": "Local product locator website",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cookie-parser": "^1.4.7",
+    "fuse.js": "^7.1.0",
+    "sqlite3": "^5.1.7"
+  }
+}

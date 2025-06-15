@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>تلقاها</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+  <header>
+    <h1>تلقاها</h1>
+    <p>ابحث عن المنتجات والمحلات القريبة منك</p>
+    <input type="text" id="searchInput" placeholder="اكتب اسم المنتج..." />
+    <button onclick="searchProduct()">بحث</button>
+  </header>
+
+  <main>
+    <div id="map"></div>
+    <div id="results"></div>
+  </main>
+
+  <footer>
+    <img src="your-logo.png" alt="Logo" />
+    <p>© تلقاها</p>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    const map = L.map('map').setView([36.5962, 10.4900], 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    async function searchProduct() {
+      const query = document.getElementById('searchInput').value.trim();
+      if (!query) return;
+
+      const res = await fetch(`/api/products?q=${encodeURIComponent(query)}`);
+      const data = await res.json();
+      document.getElementById('results').innerHTML = '';
+
+      map.eachLayer(layer => {
+        if (layer instanceof L.Marker) map.removeLayer(layer);
+      });
+
+      if (data.length === 0) {
+        document.getElementById('results').innerHTML = `<p>لا توجد نتائج</p>`;
+        return;
+      }
+
+      data.forEach(({ product, shop }) => {
+        const marker = L.marker([shop.lat, shop.lng]).addTo(map);
+        const productImg = `<img src="${product.image}" width="100" />`;
+        const shopImgs = shop.images.map(img => `<img src="${img}" width="80">`).join('');
+        const popupContent = `
+          <h3>${product.name}</h3>
+          <p>الثمن: ${product.price}</p>
+          <p>صاحب المحل: ${shop.name}</p>
+          <p>الهاتف: ${shop.phone}</p>
+          ${productImg}
+          <div class="shop-images">${shopImgs}</div>
+        `;
+        marker.bindPopup(popupContent).openPopup();
+      });
+    }
+  </script>
+  <script src="script.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
