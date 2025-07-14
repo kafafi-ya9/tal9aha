@@ -1,29 +1,25 @@
 export default function handler(req, res) {
-  const { q } = req.query;
+  const shops = [/* your sample data */];
+  const query = req.query.q?.toLowerCase();
+  const results = [];
 
-  const allProducts = [
-    {
-      name: 'دراجة',
-      price: '300 TND',
-      shop: {
-        name: 'Shop A',
-        phone: '12345678',
-        location: [36.4897, 10.1010]
-      },
-      image: '/bike.jpg'
-    },
-    {
-      name: 'دراجة',
-      price: '280 TND',
-      shop: {
-        name: 'Shop B',
-        phone: '98765432',
-        location: [36.4877, 10.1025]
-      },
-      image: '/bike.jpg'
+  for (const shop of shops) {
+    for (const product of shop.products) {
+      if (product.name.toLowerCase().includes(query)) {
+        results.push({
+          product,
+          shop: {
+            name: shop.name,
+            phone: shop.phone,
+            lat: shop.lat,
+            lng: shop.lng,
+            images: shop.images
+          }
+        });
+      }
     }
-  ];
+  }
 
-  const filtered = allProducts.filter(p => p.name.includes(q));
-  res.status(200).json(filtered);
+  res.status(200).json(results);
 }
+

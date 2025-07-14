@@ -41,7 +41,7 @@ const shops = [
         description:'gel machine automatique SUPER ANTI-TACHES 3L سائل غسيل بالآلة',
         category: 'مواد تنظيف',
         price: '12.5 DT',
-        image: ''
+        image: 'public/images/WhatsApp Image 2025-07-08 at 18.33.40.jpeg'
       }
     ]
   }

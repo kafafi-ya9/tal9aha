@@ -116,6 +116,15 @@ footer img {
   height: 40px;
   margin-right: 15px;
 }
+#categorySelect {
+  width: 60%;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  border: 2px solid #007BFF;
+  color: #333;
+}
 
 
 
