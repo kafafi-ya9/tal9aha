@@ -16,8 +16,32 @@ const shops = [
       {
         name: 'دراجة',
         description: 'دراجة هوائية جبلية',
+        category: 'رياضة',
         price: '800 DT',
         image: 'bike.jpg'
+      }
+    ]
+  },
+  { id: 2,
+    name: 'الأمين',
+    phone: '+216 54996952',
+    lat: 36.591400,
+    lng: 10.504000,
+    images: ['hamma1.jpg', 'hamma2.jpg'],
+    products: [
+      {
+        name: 'degraissant مزيل دهون',
+        description:' 1L degraissant super eclat et brillance مزيل الدهون',
+        category: 'مواد تنظيف',
+        price: '10 DT',
+        image: 'WhatsApp Image 2025-07-08 at 18.31.25.jpeg'
+      },
+      {
+        name:'gel machine سائل غسيل',
+        description:'gel machine automatique SUPER ANTI-TACHES 3L سائل غسيل بالآلة',
+        category: 'مواد تنظيف',
+        price: '12.5 DT',
+        image: ''
       }
     ]
   }
@@ -33,17 +57,21 @@ app.get('/api/shops', (req, res) => {
 });
 
 app.get('/api/products', (req, res) => {
-  const query = req.query.q?.toLowerCase();
-  if (!query) return res.json([]);
+  const query = (req.query.q || '').toLowerCase().trim();
+  const categoryFilter = (req.query.category || '').toLowerCase().trim();
 
   const results = [];
 
   for (const shop of shops) {
     for (const product of shop.products) {
-      if (
-        product.name.toLowerCase().includes(query) ||
-        product.description.toLowerCase().includes(query)
-      ) {
+      const text = `${product.name} ${product.description}`.toLowerCase();
+      const matchesQuery = query
+        .split(/\s+/)
+        .every(word => text.includes(word));
+
+      const matchesCategory = !categoryFilter || (product.category && product.category.toLowerCase() === categoryFilter);
+
+      if (matchesQuery && matchesCategory) {
         results.push({
           product,
           shop: {
@@ -60,6 +88,8 @@ app.get('/api/products', (req, res) => {
 
   res.json(results);
 });
+
+
 
 // Fallback to index.html
 app.get('*', (req, res) => {
