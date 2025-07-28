@@ -16,7 +16,7 @@ const shops = [
       {
         name: 'دراجة',
         description: 'دراجة هوائية جبلية',
-        category: 'رياضة',
+        category: 'bicycles',
         price: '800 DT',
         image: 'bike.jpg'
       }
@@ -32,17 +32,143 @@ const shops = [
       {
         name: 'degraissant مزيل دهون',
         description:' 1L degraissant super eclat et brillance مزيل الدهون',
-        category: 'مواد تنظيف',
+        category: 'produits de nettoyage',
         price: '10 DT',
-        image: 'WhatsApp Image 2025-07-08 at 18.31.25.jpeg'
+        image: 'public/images/super degraissant.jpg'
       },
       {
         name:'gel machine سائل غسيل',
         description:'gel machine automatique SUPER ANTI-TACHES 3L سائل غسيل بالآلة',
-        category: 'مواد تنظيف',
-        price: '12.5 DT',
-        image: 'public/images/WhatsApp Image 2025-07-08 at 18.33.40.jpeg'
-      }
+        category:'produits de nettoyage',
+        price: 'el bahja:12.5 DT ,magic marseille:13.5 ,magic ocean:12.5 ,noir,amigo:14.5 ,gold,light:16.5',
+        image: 'public/images/gel machine automatique super.jpg'
+      },
+      {
+        name:'huile essentielle زيوت',
+        description:'huile essentielle doux زيوت',
+        category:'produits de nettoyage',
+        price: '7 DT',
+        image: 'public/images/huile essentielle doux.jpg'
+      },
+      {
+        name:'huile essentielle زيوت',
+        description:'huile essentielle golden زيوت',
+        category:'produits de nettoyage',
+        price: '7 DT',
+        image: 'public/images/huile essentielle golden.jpg'
+      },
+      {
+        name:'huile essentielle زيوت',
+        description:'huile essentielle dangerous زيوت',
+        category:'produits de nettoyage',
+        price: '7 DT',
+        image: 'public/images/huile essentielle dangerous.jpg'
+      },
+      {
+        name:'huile essentielle زيوت',
+        description:'huile essentielle madame زيوت',
+        category:'produits de nettoyage',
+        price: '7 DT',
+        image: 'public/images/huile essentielle madame.jpg'
+      },
+      {
+        name:'parfum de linge معطر',
+        description:'parfum de linge معطر مركز للثياب',
+        category:'produits de nettoyage',
+        price: '5 DT',
+        image: 'public/images/parfum de linge.jpg'
+      },
+      {
+        name:'parfum de linge معطر',
+        description:'parfum de linge معطر مركز للثياب',
+        category:'produits de nettoyage',
+        price: '5 DT',
+        image: 'public/images/parfum de linge.jpg'
+      },
+      {
+        name:'gel lavant سائل غسيل',
+        description:'gel lavant mains corps et visage  سائل غسيل',
+        category:'produits de nettoyage',
+        price: '4.5 DT',
+        image: 'public/images/gel lavant.jpg'
+      },
+      {
+        name:'lave sol منظف ارضيات',
+        description:'lave sol parfums et brillance 900 mL منظف ارضيات',
+        category:'produits de nettoyage',
+        price: '5 DT',
+        image: 'public/images/lave sol.jpg'
+      },
+      {
+        name:'liquide vaisselle سائل غسيل',
+        description:'liquide vaisselle سائل غسيل',
+        category:'produits de nettoyage',
+        price: '580mL:3.9 DT ,3L:14.5 DT',
+        image: 'public/images/liquide vaisselle.jpg'
+      },
+      {
+        name:'fresh linge معطر ثياب بعد الغسيل',
+        description:'fresh linge 250mL معطر ثياب بعد الغسيل',
+        category:'produits de nettoyage',
+        price: '6.5 DT',
+        image: 'public/images/fresh linge.jpg'
+      },
+      {
+        name:'parfum concentre معطر مركز',
+        description:'parfum concentre pour toutes les surfaces 580mL معطر مركز',
+        category:'produits de nettoyage',
+        price: '9 DT',
+        image: 'public/images/parfum concentre.jpg'
+      },   
+      {
+        name:'air fresh معطر جو',
+        description:'air fresh 250mL معطر جو',
+        category:'produits de nettoyage',
+        price: '4 DT',
+        image: 'public/images/air fresh.jpg'
+      }, 
+      {
+        name:'nettoyant multi usages منظف',
+        description:'nettoyant multi usages منظف',
+        category:'produits de nettoyage',
+        price: '8.5 DT',
+        image: 'public/images/nettoyant multi usages.jpg'
+      },
+      {
+        name:'brillant sol ملمع ارضيات',
+        description:'brillant sol brillance et parfum ملمع ارضيات',
+        category:'produits de nettoyage',
+        price: '5 DT',
+        image: 'public/images/brillant sol.jpg'
+      },
+      {
+        name:'nettoyant salle de bain منظف الحمام',
+        description:'nettoyant salle de bain 1L منظف الحمام',
+        category:'produits de nettoyage',
+        price: '11 DT',
+        image: 'public/images/nettoyant salle de bain.jpg'
+      },
+      {
+        name:'deboucheur granules',
+        description:'deboucheur granules',
+        category:'produits de nettoyage',
+        price: '4.3 DT',
+        image: 'public/images/deboucheur granules.jpg'
+      },
+      {
+        name:'orient sol',
+        description:'orient sol brillance et parfum',
+        category:'produits de nettoyage',
+        price: '5 DT',
+        image: 'public/images/orient sol.jpg'
+      }, 
+      {
+        name:'orient sol',
+        description:'orient sol brillance et parfum',
+        category:'produits de nettoyage',
+        price: '5 DT',
+        image: 'public/images/orient sol.jpg'
+      }                                   
     ]
   }
 ];
