@@ -12,18 +12,21 @@
 </head>
 <body>
   <header>
-    <h1>تلقاها</h1>
-    <p>ابحث عن المنتجات والمحلات القريبة منك</p>
+    <div class="top-controls">
+  <h1>تلقاها</h1>
+  <form id="searchForm">
     <select id="categorySelect">
-  <option value="">كل الفئات</option>
-  <option value="Bicycles">دراجات</option>
-  <option value="produits de nettoyage">مواد تنظيف</option>
-  <option value="Electronics">إلكترونيات</option>
-  <option value="Home Appliances">أجهزة منزلية</option>
-</select>
+      <option value="">كل الفئات</option>
+      <option value="Bicycles">دراجات</option>
+      <option value="Electronics">إلكترونيات</option>
+      <option value="Home Appliances">أجهزة منزلية</option>
+    </select>
+    <input id="searchInput" type="text" placeholder="اكتب اسم المنتج..." />
+    <button type="submit">بحث</button>
+    
+  </form>
+</div>
 
-    <input type="text" id="searchInput" placeholder="اكتب اسم المنتج..." />
-    <button onclick="searchProduct()">بحث</button>
   </header>
 
   <main>
@@ -76,7 +79,7 @@
       });
     }
   </script>
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 
 </body>
 </html>
