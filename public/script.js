@@ -2,7 +2,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('form');
   const input = document.querySelector('input[type="text"]');
   const categorySelect = document.getElementById('categorySelect');
-  const mapContainer = document.getElementById('map');
+
+  // ✅ Initialize the map once, outside the event
+  const map = L.map('map').setView([36.8, 10.17], 11);
+
+  // ✅ Use satellite tiles (Esri)
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Tiles &copy; Esri &mdash; Source: Esri, Earthstar Geographics'
+  }).addTo(map);
+
+  let currentMarkers = [];
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -10,30 +19,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const query = input.value.trim();
     const category = categorySelect.value;
 
-    // Skip if no search and no category
     if (!query && !category) return;
 
-    // Fetch products with both query and category
     const res = await fetch(`/api/products?q=${encodeURIComponent(query)}&category=${encodeURIComponent(category)}`);
     const data = await res.json();
 
-    mapContainer.innerHTML = ''; // Clear previous map or messages
+    // ✅ Remove old markers from map
+    currentMarkers.forEach(marker => map.removeLayer(marker));
+    currentMarkers = [];
 
     if (data.length === 0) {
-      mapContainer.innerHTML = '<p>🚫 لم يتم العثور على منتجات.</p>';
+      alert("🚫 لم يتم العثور على منتجات.");
       return;
     }
 
-    // Initialize map
-    const map = L.map('map').setView([36.8, 10.17], 11);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
-
-    // Show markers for each result
     data.forEach(entry => {
       const { product, shop } = entry;
       const marker = L.marker([shop.lat, shop.lng]).addTo(map);
+      currentMarkers.push(marker); // Keep track of markers
 
       const popupContent = `
         <strong>${product.name}</strong><br>
@@ -45,5 +48,9 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
       marker.bindPopup(popupContent);
     });
+
+    // Zoom to first result
+    const { shop } = data[0];
+    map.setView([shop.lat, shop.lng], 14);
   });
 });
