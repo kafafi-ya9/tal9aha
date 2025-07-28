@@ -18,6 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const query = input.value.trim();
     const category = categorySelect.value;
+    
+    console.log("Search for:", query);
 
     if (!query && !category) return;
 
@@ -54,3 +56,5 @@ document.addEventListener('DOMContentLoaded', () => {
     map.setView([shop.lat, shop.lng], 14);
   });
 });
+
+
